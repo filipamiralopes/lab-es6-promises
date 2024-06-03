@@ -125,4 +125,43 @@ async function doTheBroccoli() {
 doTheBroccoli();
 
 // Bonus 2 - Promise all
-// ...
+
+const promise1 = new Promise((resolve, _) => {
+  resolve(obtainInstruction("brusselsSprouts", 0));
+})
+const promise2 = new Promise((resolve, _) => {
+  resolve(obtainInstruction("brusselsSprouts", 1));
+})
+const promise3 = new Promise((resolve, _) => {
+  resolve(obtainInstruction("brusselsSprouts", 2));
+})
+const promise4 = new Promise((resolve, _) => {
+  resolve(obtainInstruction("brusselsSprouts", 3));
+})
+const promise5 = new Promise((resolve, _) => {
+  resolve(obtainInstruction("brusselsSprouts", 4));
+})
+const promise6 = new Promise((resolve, _) => {
+  resolve(obtainInstruction("brusselsSprouts", 5));
+})
+const promise7 = new Promise((resolve, _) => {
+  resolve(obtainInstruction("brusselsSprouts", 6));
+})
+// const promise8 = new Promise((resolve, _) => {
+//   resolve(obtainInstruction("brusselsSprouts", 7));
+// })
+
+// ask chatGPT to improve the above code
+
+Promise.all( [promise1, promise2, promise3, promise4, promise5, promise6, promise7] )
+  .then((values) => {
+    console.log(values);
+    values.forEach(val => {
+      document.querySelector("#brusselsSprouts").innerHTML += `<li>${val}</li>`;
+    })
+    document.querySelector("#brusselsSprouts").innerHTML += `<li>Brussels sprouts are ready!</li>`;
+    document.querySelector("#brusselsSproutsImg").removeAttribute("hidden");
+  })
+  .catch((error) => {
+    console.log(error);
+  })
